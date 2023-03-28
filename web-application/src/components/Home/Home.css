@@ -1,0 +1,24 @@
+
+
+.card{
+    display: inline-block;
+   
+}
+.total{
+    height: 400px;
+}
+.dialog{
+
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .img_button{
+    visibility: hidden;
+} */
+.card_profile{
+    height: 275px;
+}
+
+
+

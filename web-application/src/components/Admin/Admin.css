@@ -1,0 +1,14 @@
+.head{
+    font-size: 18px!important;
+    font-weight: 600 !important;
+}
+.tableHead{
+    background-color: gray;
+    font-size: 18px;
+    font-weight: 600;
+}
+.tableRow{
+    background-color:rgb(218, 215, 215);
+}
+
+

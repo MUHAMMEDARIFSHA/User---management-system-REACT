@@ -1,0 +1,46 @@
+
+.form{
+     width: 700px;
+    height: 540px;;
+    border: 1px solid;
+    margin-top: 100px;
+    border-radius: 8px;
+    background-color: white;
+
+}
+.form-control{
+    width: 300px;
+
+}
+.form-label{
+    margin: 0!important;
+}
+.errors{
+    margin: 5px !important;
+}
+.body_signup{
+    margin: 0;
+    display:inline-block;
+}
+.img_signup{
+     height: 540px;
+    width: 335px;
+}
+.form-control{
+border-width: 3px;
+border-color: black;
+border-top: 0;
+border-left: 0;
+border-right: 0;
+}
+
+input.form-control:focus{
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: gray;
+}
+
+
