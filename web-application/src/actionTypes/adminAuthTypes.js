@@ -1,0 +1,2 @@
+export const ADMIN_SET_AUTH = 'ADNIN_SET_AUTH'
+export const ADMIN_CLEAR_AUTH = 'ADMIN_CLEAR_AUTH'

@@ -12,11 +12,13 @@ import './Home.css'
 
 
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
+import { useDispatch } from 'react-redux';
 
 
 
 function Home() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const fileRef = useRef()
   const [user,setUser] = useState('')
   const [email,setEmail]= useState('')
@@ -103,6 +105,7 @@ setPview(view)
   }
   const logout = ()=>{
     localStorage.removeItem('token')
+    dispatch(logout())
     navigate('/signin')
   }
 

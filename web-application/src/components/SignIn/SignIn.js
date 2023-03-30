@@ -2,12 +2,17 @@ import React, { useState } from 'react'
 import './SignIn.css'
 import axios from 'axios'
 import { useNavigate,Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+import { setAuth } from '../../actions/authActions'
+
+
 function SignIn() {
 const navigate = useNavigate()
 const [email,setEmail] = useState("")
 const [password,setPassword ] =useState("")
 const [formErrors,setFormErrors] = useState({})
-
+const dispatch = useDispatch()
 
   const handleSignIn =async (event)=>{
     event.preventDefault()
@@ -19,6 +24,7 @@ email,password
     }).then(res=>{
       if(res.data.success){
         localStorage.setItem('token',res.data.user)
+      dispatch(setAuth())
         navigate('/')
       }
       else if(res.data=="not signup"){
