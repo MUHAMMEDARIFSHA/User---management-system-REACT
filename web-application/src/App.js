@@ -7,6 +7,7 @@ import Home from './components/Home/Home';
 import AdminHome from './components/Admin/AdminHome';
 import AdminUserEdit from './components/Admin/AdminUserEdit';
 import AdminSignIn from './components/Admin/AdminSignIn'
+import AdminUserAdd from './components/Admin/AdminUserAdd'
 import { Provider, useSelector } from 'react-redux';
 
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -41,6 +42,7 @@ function App() {
           <Route element={<AdminProtectedRoute/>}>
           <Route path='/admin' element={<AdminHome/>}/>
         <Route path='/admin/edit/:id' element={<AdminUserEdit/>}/>
+        <Route path ="/admin/adduser" element={<AdminUserAdd/>}/>
           </Route>
           
        <Route element={<AdminPublicRoute/>}>

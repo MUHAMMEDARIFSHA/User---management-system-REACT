@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
         auth: localStorage.getItem('token')
       }
     case CLEAR_AUTH:
-        console.log("entered ckear auth");
+        console.log("entered clear auth");
       return{
         auth: null
       }

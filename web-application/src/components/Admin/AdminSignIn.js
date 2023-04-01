@@ -2,12 +2,15 @@ import React,{useState} from 'react'
 import { useNavigate,Link } from 'react-router-dom'
 import '../Admin/Admin.css'
 import axios from "axios"
+import { useDispatch } from 'react-redux'
+import { setAuth } from '../../actions/adminAuthActions'
 
 function AdminSignIn() {
     const navigate = useNavigate()
     const [username,setUsername] = useState("")
     const [password,setPassword ] =useState("")
     const [formErrors,setFormErrors] = useState({})
+    const dispatch=useDispatch()
 
     const handleSignIn =async (e)=>{
 e.preventDefault()
@@ -17,8 +20,9 @@ username,password
     }).then(res=>{
       if(res.data.success){
         localStorage.setItem('token',res.data.user)
+       dispatch(setAuth())
         navigate('/admin')
-      }
+         }
       else if(res.data=="not signup"){
         const error={}
         error.backend = `Invalid Email`

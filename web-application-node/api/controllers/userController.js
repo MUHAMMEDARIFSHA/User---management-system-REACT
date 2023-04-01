@@ -16,7 +16,7 @@ module.exports = {
       const user = await User.find({ email: email })
       if (user.length > 0) {
          console.log("user already exist");
-         res.json(user)
+         res.status(404)
       }
       else {
 
@@ -49,7 +49,7 @@ module.exports = {
                console.log("user not exist");
 
                // jwt token creation
-               const token = jwt.sign({ username: user.username, email: email }, 'secret123',{expiresIn:"1hr"});
+               const token = jwt.sign({ username: user.username, email: email }, 'secret123',{expiresIn:"3d"});
                console.log(token);
                // jwt token creation
      
@@ -63,7 +63,7 @@ module.exports = {
             }
 
          } else {
-            res.json("not signup")
+            res.status(404)
          }
       }
       catch (error) {
@@ -80,7 +80,7 @@ if(!token){
 }
 jwt.verify(token,'secret123',(err,user)=>{
    if(err){
-      return res.status(400).json({message:"Invalid Token"})
+      return res.status(400)
    }
    console.log(user.email +" email inside the verify token");
    req.email = user.email
@@ -102,12 +102,12 @@ next()
       }
 if(!user){
    console.log("1");
-         return res.status(404).json({message:"User not found"})
+         return res.status(404)
       }
       else{
          console.log("2");
          console.log(user +" user data in the getData");
-         return res.status(200).json({user})
+         return res.json({user})
       }
       
    },
@@ -116,10 +116,10 @@ if(!user){
       const data = req.file
       console.log(data);
       if(!req.file){
-         return res.json({error: 'Image is required'})
+         return res.status(404)
        }
        const path = data.path.slice(7)
-       const filepath = `http://localhost:3000/${path}`
+       const filepath = `http://localhost:9000/${path}`
        try {
          await User.findOneAndUpdate({email: req.email}, {$set:{image: filepath}})
          console.log("file updated");
@@ -129,19 +129,5 @@ if(!user){
        }
 
    }
-   // getData:async(req,res)=>{
-   //    const token = req.headers['x-access-token']
-
-   //    try{
-   //       const decoded = jwt.verify(token,'secret123')
-   //       const email = decoded.email
-   //       const user = await User.updateOne({email:email})
-   //       return {status:'ok',user : user.name}
-
-   //    }catch(error){
-   //       console.log(error)
-   //       res.json({status:"error",error:'invalid token'})
-
-   //    }
-   // }
+  
 }

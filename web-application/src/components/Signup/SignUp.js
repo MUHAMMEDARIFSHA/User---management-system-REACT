@@ -48,7 +48,7 @@ function SignUp() {
     if (!formValues.confirmpassword) {
       errors.confirmpassword = "Confirm your password"
     }
-    else if (formValues.password != formValues.confirmpassword) {
+    else if (formValues.password !== formValues.confirmpassword) {
       errors.confirmpassword = "Enter same password"
     }
     if (Object.keys(errors).length > 0) {
@@ -109,7 +109,7 @@ function SignUp() {
                 <p className='errors text-danger '>{formErrors.backend}</p>
                   <div>
                     <label className='form-label'>User Name</label>
-                    <input onChange={handleChange} value={formValues.username} className='form-control  form-control-sm' for="username" id='username' name='username' />
+                    <input onChange={handleChange} value={formValues.username} className='form-control  form-control-sm' htmlFor="username" id='username' name='username' />
                   </div>
                   <p className='errors text-danger '>{formErrors.username}</p>
                   <div>

@@ -13,6 +13,7 @@ import './Home.css'
 
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 import { useDispatch } from 'react-redux';
+import { clearAuth } from '../../actions/authActions';
 
 
 
@@ -62,25 +63,29 @@ setPview(view)
     }
    }) .then(response => response.json())
    .then(data => 
-    // console.log(data.user[0].username+"data of user"),
+    
    userData =data.user[0] )
    .catch(error => console.error(error));
    setUser(userData.username)
    setEmail(userData.email)
+   setCreated(new Date(userData.createdAt).toLocaleDateString())
    setSrc("http://localhost:9000"+userData.image.slice(21))
    
-   setCreated(new Date(userData.createdAt).toLocaleDateString())
+   
   }
   console.log(src +" image src 1");
   console.log(email);
   
   useEffect(()=>{
+    console.log("inside useeffect in home");
   const token = localStorage.getItem('token')
   if(token){
-    const user= jwt_decode(token);
-    console.log(user);
-    if (!user){
+    const email= jwt_decode(token);
+    console.log(email+"email in useeffect");
+    console.log(email);
+    if (!email){
       localStorage.removeItem('token')
+      dispatch(clearAuth())
   navigate('/signin')
     }
     else{
@@ -98,17 +103,19 @@ setPview(view)
    .then(res => {
     if (res.data.success) {
       console.log("profile updated");
-      window.location.reload();
+      const url = res.data.url
+      console.log(url+" url of image updated");
+      setSrc(url)
       }
     })
   
   }
   const logout = ()=>{
     localStorage.removeItem('token')
-    dispatch(logout())
+    dispatch(clearAuth())
     navigate('/signin')
-  }
-
+      }
+  
   
   return (
     <div>
@@ -121,7 +128,7 @@ setPview(view)
     
   </div>
   <div className='d-flex'>
-    {/* if(localStorage.length===0){ */}
+
 
    {localStorage.length===0 ? <Link to="/signin"><button className='btn btn-outline-secondary'>SignIn</button> </Link>:<button onClick={logout} className='btn btn-outline-danger'>Logout</button> }  
    
